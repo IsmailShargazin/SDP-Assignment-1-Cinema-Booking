@@ -1,5 +1,10 @@
 public class VIPBookingBuilder implements CinemaBookingBuilder {
 
+    private static final String VIP_FORMAT = "IMAX";
+    private static final String VIP_HALL = "VIP Hall";
+    private static final String VIP_POPCORN = "Large Popcorn";
+    private static final String VIP_DRINK = "Coca-Cola";
+
     private String movieTitle;
     private String movieFormat;
     private String hall;
@@ -16,13 +21,13 @@ public class VIPBookingBuilder implements CinemaBookingBuilder {
 
     @Override
     public CinemaBookingBuilder configureFormat() {
-        this.movieFormat = "IMAX";
+        this.movieFormat = VIP_FORMAT;
         return this;
     }
 
     @Override
     public CinemaBookingBuilder configureHall() {
-        this.hall = "VIP Hall";
+        this.hall = VIP_HALL;
         return this;
     }
 
@@ -40,13 +45,13 @@ public class VIPBookingBuilder implements CinemaBookingBuilder {
 
     @Override
     public CinemaBookingBuilder configurePopcorn() {
-        this.popcorn = "Large Popcorn";
+        this.popcorn = VIP_POPCORN;
         return this;
     }
 
     @Override
     public CinemaBookingBuilder configureDrink() {
-        this.drink = "Coca-Cola";
+        this.drink = VIP_DRINK;
         return this;
     }
 

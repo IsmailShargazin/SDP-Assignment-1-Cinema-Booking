@@ -1,5 +1,10 @@
 public class StandardBookingBuilder implements CinemaBookingBuilder {
 
+    private static final String STANDARD_FORMAT = "2D";
+    private static final String STANDARD_HALL = "Standard Hall";
+    private static final String STANDARD_POPCORN = "Medium Popcorn";
+    private static final String STANDARD_DRINK = "Water";
+
     private String movieTitle;
     private String movieFormat;
     private String hall;
@@ -16,13 +21,13 @@ public class StandardBookingBuilder implements CinemaBookingBuilder {
 
     @Override
     public CinemaBookingBuilder configureFormat() {
-        this.movieFormat = "2D";
+        this.movieFormat = STANDARD_FORMAT;
         return this;
     }
 
     @Override
     public CinemaBookingBuilder configureHall() {
-        this.hall = "Standard Hall";
+        this.hall = STANDARD_HALL;
         return this;
     }
 
@@ -40,13 +45,13 @@ public class StandardBookingBuilder implements CinemaBookingBuilder {
 
     @Override
     public CinemaBookingBuilder configurePopcorn() {
-        this.popcorn = "Medium Popcorn";
+        this.popcorn = STANDARD_POPCORN;
         return this;
     }
 
     @Override
     public CinemaBookingBuilder configureDrink() {
-        this.drink = "Water";
+        this.drink = STANDARD_DRINK;
         return this;
     }
 
