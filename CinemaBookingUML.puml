@@ -1,0 +1,104 @@
+@startuml
+
+title Cinema Booking - Builder Pattern
+
+class CinemaBooking <<Product>> {
+    - movieTitle : String
+    - movieFormat : String
+    - hall : String
+    - row : int
+    - seatNumber : int
+    - popcorn : String
+    - drink : String
+
+    + CinemaBooking(movieTitle : String, movieFormat : String, hall : String, row : int, seatNumber : int, popcorn : String, drink : String)
+    + toString() : String
+}
+
+interface CinemaBookingBuilder <<Builder>> {
+    + setMovieTitle(movieTitle : String) : CinemaBookingBuilder
+    + configureFormat() : CinemaBookingBuilder
+    + configureHall() : CinemaBookingBuilder
+    + setRow(row : int) : CinemaBookingBuilder
+    + setSeatNumber(seatNumber : int) : CinemaBookingBuilder
+    + configurePopcorn() : CinemaBookingBuilder
+    + configureDrink() : CinemaBookingBuilder
+    + build() : CinemaBooking
+}
+
+class StandardBookingBuilder <<ConcreteBuilder>> {
+    - STANDARD_FORMAT : String
+    - STANDARD_HALL : String
+    - STANDARD_POPCORN : String
+    - STANDARD_DRINK : String
+
+    - movieTitle : String
+    - movieFormat : String
+    - hall : String
+    - row : int
+    - seatNumber : int
+    - popcorn : String
+    - drink : String
+
+    + setMovieTitle(movieTitle : String) : CinemaBookingBuilder
+    + configureFormat() : CinemaBookingBuilder
+    + configureHall() : CinemaBookingBuilder
+    + setRow(row : int) : CinemaBookingBuilder
+    + setSeatNumber(seatNumber : int) : CinemaBookingBuilder
+    + configurePopcorn() : CinemaBookingBuilder
+    + configureDrink() : CinemaBookingBuilder
+    + build() : CinemaBooking
+    - validateBooking() : void
+}
+
+class VIPBookingBuilder <<ConcreteBuilder>> {
+    - VIP_FORMAT : String
+    - VIP_HALL : String
+    - VIP_POPCORN : String
+    - VIP_DRINK : String
+
+    - movieTitle : String
+    - movieFormat : String
+    - hall : String
+    - row : int
+    - seatNumber : int
+    - popcorn : String
+    - drink : String
+
+    + setMovieTitle(movieTitle : String) : CinemaBookingBuilder
+    + configureFormat() : CinemaBookingBuilder
+    + configureHall() : CinemaBookingBuilder
+    + setRow(row : int) : CinemaBookingBuilder
+    + setSeatNumber(seatNumber : int) : CinemaBookingBuilder
+    + configurePopcorn() : CinemaBookingBuilder
+    + configureDrink() : CinemaBookingBuilder
+    + build() : CinemaBooking
+    - validateBooking() : void
+}
+
+class BookingDirector <<Director>> {
+    - builder : CinemaBookingBuilder
+
+    + BookingDirector(builder : CinemaBookingBuilder)
+    + changeBuilder(builder : CinemaBookingBuilder) : void
+    + constructBooking(movieTitle : String, row : int, seatNumber : int) : CinemaBooking
+}
+
+class Main <<Client>> {
+    + main(args : String[]) : void
+}
+
+CinemaBookingBuilder <|.. StandardBookingBuilder
+CinemaBookingBuilder <|.. VIPBookingBuilder
+
+BookingDirector --> CinemaBookingBuilder : uses
+
+StandardBookingBuilder ..> CinemaBooking : builds
+VIPBookingBuilder ..> CinemaBooking : builds
+
+Main ..> BookingDirector : uses
+Main ..> StandardBookingBuilder : creates
+Main ..> VIPBookingBuilder : creates
+Main ..> CinemaBooking : receives
+
+@enduml
